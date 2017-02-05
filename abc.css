@@ -1,0 +1,59 @@
+
+/*整体配置*/
+body{
+	margin-left:15%;
+	margin-top:100px;
+	margin-right:15%;
+	margin-bottom:200px;
+	background-color:#e2ebf9;
+	
+}
+
+/*大标题*/
+h1{
+	font-size:40px;
+	font-family:"宋体";
+	color:#000000;
+	text-align:center;
+	}
+/*一级标题*/
+h2{
+	font-size:32px;
+	font-family:"楷体";
+	color:#09031c;
+	/*border-style:groove;*/
+	background-color:#9981e6;
+}
+
+/*一般段落文本格式*/
+.p1_style{
+	font-size:20px;
+	font-family:"楷体";
+	color:#000000;
+}
+
+
+/*招贤纳士 列表*/
+.li_style1{
+	font-size:20px;
+	font-family:"楷体";
+	color:#2f0e96;
+}
+
+.hr{
+
+}
+
+/*实践经验*/
+.li_style2{
+	font-size:20px;
+	font-family:"楷体";
+	color:#2f0e96;
+}
+
+/*笔记超链接 格式*/
+.a_style{
+hover;
+color:#6d0eeb;
+text-decoration: none;
+}
