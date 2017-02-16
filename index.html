@@ -1,48 +1,167 @@
-﻿<!Doctype html>
-<html xmlns=http://www.w3.org/1999/xhtml>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-
-
-<link rel=stylesheet type=text/css href=abc.css>
-
-
-<meta http-equiv=Content-Type content="text/html;charset=utf-8">
-<title>敛-Skey 电子工作室</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>敛-Skey  n%电子工作室</title>
+    <link rel="stylesheet" type="text/css" href="blog.css">
 </head>
-<body>
 
-	<h1 >敛-Skey 电子工作室</h1>
-	<br />
-	<hr />
-	<h2>通告</h2>
-	<p class = p1_style>创立敛-电子工作室旨在汇聚各位志同道合来一起学习，奋斗！共同成长和发展！</p>
-	<p class = p1_style>有兴趣的朋友，一起加入吧！</p>
-	<hr />
-	<h2>招贤纳士:</h2>
-	<li class = li_style1>电子电路研发</li>
-	<li class = li_style1>C++界面开发</li>
-	<li class = li_style1>机械设计 </li>
-	<li class = li_style1>开拓业务 </li>
-	<li class = li_style1>只要你有才能，你都可以加入！</li>
-	<hr />
-	<h2>简介</h2>
-	<p class = p1_style>敛-Skey电子工作室承接电子电路、计算机软件、机械构造等项目。有意者请QQ联系:945764822</p>
-	<p class = p1_style>敛-Skey 电子工作室正计划成立，敬请期待！</p>
-	<p class = p1_style>点击进入我的淘宝店铺</p>
-	<a href = "http://taobao.com" ><img src="./image/taobaologo.jpg" /></a>
-		<hr />
-	<h2>  实践经验 </h2>
-	<li class = li_style2>1xxx</li>
-	<li class = li_style2>2xxx</li>
-	<li class = li_style2>3xxx</li>
-	<li class = li_style2>4xxx</li>
-	<li class = li_style2>5xxx</li>
-	<li class = li_style2>6xxx</li>
-	<li class = li_style2>7xxx</li>
-		<hr />
-	<h2> 学习笔记 </h2>
-	<a class = a_style href="http://www.baidu.com"><p>51单片机</p></a>
-	<a class = a_style href="http://www.baidu.com"><p>Cortex-M3</p></a>
-	<a class = a_style href="http://www.baidu.com"><p>HTML</p></a>
+<body class="">
+    <div id="archnavbar" class="anb-home">
+        <div id="archnavbarlogo">敛-Skey n%电子工作室</div>
+        <div id="archnavbarmenu">
+            <ul id="archnavbarlist">
+                <li><a href = "https://skeyzero.github.io/">Home</a></li>
+                <li><a href="https://shop110857561.taobao.com/shop/view_shop.htm?spm=686.1000925.a1zvx.d53.tEkson&mytmenu=mdianpu&user_number_id=881535862">我的淘宝</a></li>
+                <li><a>个人简介</a></li>
+            </ul>
+        </div>
+    </div>
 	
-</body>
+    <div id="content">
+        <div id="archdev-navbar">
+        </div>
+            <div id="content-left-wrapper">
+                <div id="content-left">
+					<div id="intro" class="box">
+						<h2>服务宗旨</h2>
+							<li>合作项目要求必须明确</li>
+							<li>严格按照客户要求设计</li>
+							<li>遇到不明确问题及时向客户咨询，保证设计正确</li>
+							<li>设计中如果方案有变，双方共同商议解决</li>
+							<li>互利共赢，可持续合作发展</li>
+						<p class="readmore"><a href="https://www.baidu.com" title="Learn more about Arch Linux">See more...</a></p>
+					</div>
+
+					<div id="news">
+						<h3>
+							<a font-color:#FFFFFF>项目经验</a>
+							<span class="arrow"></span>
+						</h3>
+						<h4>
+							<a href="https://www.archlinux.org/news/phasing-out-i686-support/" title="View full article: Phasing out i686 support">
+								耐温测试系统
+							</a>
+						</h4>
+						<p class="timestamp">2017-02-15</p>
+						<div class="article-content">
+							<p>
+								系统主要测试检测单元耐高温能力。用到主要配件6个步进电机，6个温控器，加热系统，降温系统，人机交互系统。
+								主控板是使用STM32芯片。使用资源有：
+							</p>
+							
+							<li>2路串口----一路232与触摸屏通信，进行人际交互。另一路使用485与6个温控制进行通信</li>
+							<li>12路驱动输出----控制加热和降温</li>
+							<li>定时器模拟六路PWM输出----控制脉冲数，驱动电机转角</li>
+							<li>6路限位输入----检测限位信号，防止电机转角过大，缩短使用寿命</li>
+							<li>触摸屏交互----通过触摸屏设置测试温度，测试参数等</li>
+							
+							<p>责任：全责。包括硬件电路设计，制作PCB，程序设计，软硬件调试</p>
+						</div>
+						
+						<h4>
+							<a href="https://www.archlinux.org/news/xorg-server-1191-is-now-in-extra/" title="View full article: xorg-server 1.19.1 is now in extra">
+								手持式纹眉机
+							</a>
+						</h4>
+						
+						<p class="timestamp">2017-02-15</p>
+						<div class="article-content">
+							<p>使用中颖8位MCU。带LCD驱动，可直接驱动小型液晶屏，触摸型按键操作。内置移动电源功能，可对外供移动设备充电。使用资源有：</p>
+							<li>LCD----LCD屏作为交互</li>
+							<li>II2----IO引脚模拟IIC功能，采集触摸芯片信号</li>
+							<li>BUZ----内置蜂鸣器驱动</li>
+							<li>PWM----控制小电机转速</li>
+							<li>移动电源----内置电池保护电路,电池充电电路，5V输出可供移动设备充电，7V输出共主板工作</li>
+							<p>责任：全责。包括硬件电路设计，制作PCB，程序设计，软硬件调试</p>
+						</div>
+						
+						<h4>
+							<a href="https://www.archlinux.org/news/openvpn-240-update-requires-administrative-interaction/" title="View full article: OpenVPN 2.4.0 update requires administrative interaction">
+							各个项目不意义详细列举了
+							</a>
+						</h4>
+						<p class="timestamp">2017-01-20</p>
+						<div class="article-content">
+							<li>开关寿命测试系统,带触摸屏</li>
+							<li>多路电流检测板，精度0.01A</li>
+							<li>多路宽电压交直流信号检测板--5-300V交直流可测</li>
+							<li>电参数仪设计--可测量电压、电流、功率、功率因数、频率等电参数数据</li>
+							<li>SGS/德凯 电流负载控制器，带触摸屏</li>
+							<li>SGS 青智仪器协议转换板--将十六进制协议转换为字符协议，供上位机处理</li>
+							<li>SGS欧姆龙温控器转协议--485转232，通信协议重修修改</li>
+							<li>HoneyWell 开关测试--测试开关推行距离，推力等 使用触摸屏交互</li>
+							<li>HoneyWell 旋转使开关测试--测试开关旋转角度。带触摸屏</li>
+							<li>汽车离合控制器</li>
+							<li>汽车自动当面板控制器</li>
+							<li>科技馆各种小玩意</li>
+							<li>等等</li>
+							<li>一直以来从事产品研发和维护工作</li>
+						</div>
+						
+					</div>
+
+
+                </div>
+            </div>
+			
+            <div id="content-right">
+				<div id="pkg-updates" class="widget box">
+					<h3>学习笔记<span class="more">(<a href="https://www.baidu.com" title="Browse all of the latest packages">more</a>)</span></h3>
+
+				   
+					<table>
+						
+						<tbody><tr>
+							<td class="pkg-name"><span class="extra">STC MCU</span></td>
+							<td class="pkg-arch">
+								<a href="https://www.baidu.com" title="Details for kdenetwork-kopete [extra]">8bit</a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="pkg-name"><span class="community">AVR MCU</span></td>
+							<td class="pkg-arch">
+								<a href="https://www.baidu.com" title="Details for docker [community]">8 bit</a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="pkg-name"><span class="extra">中颖 MCU</span></td>
+							<td class="pkg-arch">
+								<a href="https://www.baidu.com" title="Details for libraw [extra]">8 bit</a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="pkg-name"><span class="testing">STM32 MCU</span></td>
+							<td class="pkg-arch">
+								<a href="https://www.baidu.com" title="Details for gnutls [testing]">32 bit</a>
+							</td>
+						</tr>
+					   
+						
+					</tbody></table>
+				</div>
+				
+				
+				<div id="nav-sidebar" class="widget">
+					<h4>HTLM</h4>
+					<ul>
+						<li><a href="https://pages.github.com/">Github 个人网页教程</a></li>
+						<li><a href="http://www.w3school.com.cn/tags/tag_html.asp">HTML标签</a></li>
+						<li><a href="http://www.divcss5.com/cssrumen/">DIV+CSS</a></li>
+					</ul>
+
+					<h4>Linux</h4>
+					<ul>
+						<li><a href="https://www.baidu.com">Linux常用命令</a></li>
+						<li><a href="https://www.baidu.com">Linux发行版心得</a></li>
+					</ul>
+				</div>
+            </div>
+		</div>
+	</body>
+</html>
