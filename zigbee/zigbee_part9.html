@@ -1,0 +1,25 @@
+9.Miscellaneous
+9.1配置channel
+9.2配置PAN ID 和网络
+这是个可选编译选项，用于指定协路由和终端加入对应PAN ID得网络。
+ZDO_CONFIG_PAN_ID 在f8wConfig.cfg中。
+如果不使用，则将它设置未0xFFFF.
+为了进一步控制加入程序，ZDO_NetworkDiscoveryConfirmCB函数在ZDApp.c中需要修改。ZDO_NetworkDiscoveryConfirmCB() is called when the network layer has
+finished with the Network Discovery process [started by calling NLME_NetworkDiscoveryRequest()
+defined in the Stack API document].
+
+9.3Maximum payload size 最大数据
+
+9.4 Leave Network 退网
+ZDO实现了退网函数，ZDO_ProcessMgmtLeaveReq提供访问NLME-LEAVE.request。NLME-LEAVE.request允许设备将自身或其子设备移除。如果一个设备移除自生，它等待5s左右然后复位。一旦设备复位，它将进入空闲状态，它不会试图连接之前网络。（注：大概意思是不会保存之前网络信息，如果存在可加入网络，它将继续加入信号最强得网络中）。如果设备移除子设备，它将从association table中将子设备移除。The NWK address will only be reused in the case where a child device
+is a ZigBee End Device. In the case of a child ZigBee Router, the NWK address will not be reused.当一个有子设备得设备离开网络，它得子设备将保持在原来网络。
+
+尽管“NLME-LEAVE.request” 提供多个参数。但ZigBee 2007 (as well as Texas
+Instrument’s current implementation) 限制用户使用这些参数. 现在(“RemoveChildren”,  “Rejoin”,  and  “Silent”)  应该设置为缺省值。“ZDO_ProcessMgmtLeaveReq”. If these values are changed unexpected results may occur.
+
+
+9.5 Descriptors描述符
+所有ZigBee网络中得设备都有描述它类型和应用得描述符。这些信息可以被网络中其它设备发现。
+配置在ZDConfig.c and ZDConfig.h。+
+These 2 files also contain the
+Node, Power Descriptors and default User Descriptor. Make sure to change these descriptors to define your device.
