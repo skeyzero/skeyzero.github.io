@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>CC2530 Zstack IAR 编译生成HEX</title>
+		<link rel="stylesheet" type="text/css" href="studynote.css">
+	</head>
+
+	<body class="">
+		
+		
+		<!-- 标题栏  -->
+		<div class="div_title">
+			<h1>zigbee</h1>
+		</div>
+		
+		<!-- 左侧选择栏  -->
+		<div>
+			<div>
+				<div>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div>
+		
+		<h2>IAR 编译生成HEX</h2>
+		<p>
+		
+1.菜单<font color="123">Project－Options－Linker－Output－Format<font/>，选择Other。Output:intel-extended，Format variant:None，Module-local:Include all<br/>
+
+2.菜单Project－Options－Linker－Output，勾上Override default选项，把后缀改为hex<br/>
+
+3.f8w2530.xcl 中取消注释后从重新编译<br/>
+
+-M(CODE)[(_CODEBANK_START+_FIRST_BANK_ADDR)-(_CODEBANK_END+_FIRST_BANK_ADDR)]*/ <br/>
+_NR_OF_BANKS+_FIRST_BANK_ADDR=0x8000<br/>
+		</p>
+	</body>
+</html>
