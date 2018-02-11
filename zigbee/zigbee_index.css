@@ -1,0 +1,85 @@
+
+/* 圆角边框 */
+.cycle_border{
+	width:90%;			/*宽度*/
+	margin:0 auto;
+	border-radius:40px; /*圆角大小*/
+
+}
+
+.div_menu{
+	width:90%;			/*宽度*/
+	margin:0 auto;
+	
+}
+
+/**/
+.div_menu li{
+	color:#fff000;
+	width:120px;
+	list-style:none;
+	float:left;
+	text-align:center;
+	border:2px solid:blue;
+	text-decoration:none;
+}
+
+/*
+链接
+*/
+.div_men a{
+	color:blue;
+	align:center;
+	
+	width:120px;
+}
+
+/*链接 及 已经访问链接*/
+.duv_menu a:link,a:visited{
+	color:blue;
+}
+
+
+/*鼠标划过链接，变色 + 下划线*/
+.div_menu a:hover{
+	color:red;
+	text-decoration:none;  /*鼠标放上去有下划线*/
+}
+
+
+
+/* 1号标题,黑色居中 */
+h1{
+	color:blue;
+	text-align:center;
+}
+
+
+/*2号标题，左对齐*/
+h2{
+}
+
+/*2号标题，左对齐*/
+h3{
+	color:blue;
+}
+/*
+字体公式1
+蓝色，特别注意
+*/
+.font_style1{
+	color:blue;
+	font-weight:bold;
+}
+
+/*
+基本段落属性：
+*/
+.p_style1{
+	text-indent:2em;/*首行缩进2字节*/
+}
+
+
+
+
+

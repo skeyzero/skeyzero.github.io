@@ -1,25 +1,241 @@
-9.Miscellaneous
-9.1����channel
-9.2����PAN ID ������
-���Ǹ���ѡ����ѡ�����ָ��Э·�ɺ��ն˼����ӦPAN ID�����硣
-ZDO_CONFIG_PAN_ID ��f8wConfig.cfg�С�
-�����ʹ�ã���������δ0xFFFF.
-Ϊ�˽�һ�����Ƽ������ZDO_NetworkDiscoveryConfirmCB������ZDApp.c����Ҫ�޸ġ�ZDO_NetworkDiscoveryConfirmCB() is called when the network layer has
-finished with the Network Discovery process [started by calling NLME_NetworkDiscoveryRequest()
-defined in the Stack API document].
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	 <link rel="stylesheet" type="text/css" href="zigbee_index.css">
+	<title></title>
+</head>
+<body>
 
-9.3Maximum payload size �������
+	<h1>Z-Stack 开发指南</h1>
+	<div class="div_menu">
+		<ul>
+		<li><a href="../index.html">Skey's Home</a></li>
+		<li><a href="">2</a></li>
+		<li><a href=""	>3</a></li>
+		<li><a href="">4</a></li>
+		</ul>
+	</div>
+	<br />
+	<HR align=center color=#987cb9 SIZE=5 width=90%>
+	<div class="cycle_border">
+	
+	<h3 class="h3_style1">2.2网络形成</h3>
+	<p class="p_style1">
+	
+		一个配置未Co的设备将在DEFAULT_CHANLIST指定的channel中形成网络。
+		Co会随机生成一个Pan ID 或根据ZDAPP_CONFIG_PAN_ID (Not define as 0xffff)生成指定Pan_ID网络。
+		路由和EP会尝试加入DEFAULT_CHANLIST定义的网络中。
+		如果PanID不定义为0xffff,他们会加入到信任的网络中。
+	</p>
+	<h4>2.2.2网络恢复</h4>
+	
+	<p class="p_style1">
+		This automatic restoration can be enabled by defining NV_RESTORE
+		and/or NV_INIT.
+	</p>
+	<h3 class="h3_style1">9.1配置channel</h3>
+		
+	<h3 class="h3_style1">9.2配置PAN ID 和网络</h3>
+	<p class="p_style1">
+		这是个可选编译选项，用于指定协路由和终端加入对应PAN ID得网络。
+		ZDO_CONFIG_PAN_ID 在f8wConfig.cfg中。
+		如果不使用，则将它设置未0xFFFF.
+		为了进一步控制加入程序，ZDO_NetworkDiscoveryConfirmCB函数在ZDApp.c中需要修改。
+		ZDO_NetworkDiscoveryConfirmCB() is called when the network layer has
+		finished with the Network Discovery process [started by calling NLME_NetworkDiscoveryRequest()
+		defined in the Stack API document].
+	</p>
+	<h3 class="h3_style1">9.3Maximum payload size 最大数据</h3>
+			
+	<h3 class="h3_style1">9.4 Leave Network 退网</h3>
+	<p class="p_style1">
+	
+		ZDO实现了退网函数，ZDO_ProcessMgmtLeaveReq提供访问NLME-LEAVE.request。NLME-LEAVE.request允许设备将自身或其子设备移除。如果一个设备移除自生，它等待5s左右然后复位。一旦设备复位，它将进入空闲状态，它不会试图连接之前网络。（注：大概意思是不会保存之前网络信息，如果存在可加入网络，它将继续加入信号最强得网络中）。如果设备移除子设备，它将从association table中将子设备移除。The NWK address will only be reused in the case where a child device
+		is a ZigBee End Device. In the case of a child ZigBee Router, the NWK address will not be reused.当一个有子设备得设备离开网络，它得子设备将保持在原来网络。
 
-9.4 Leave Network ����
-ZDOʵ��������������ZDO_ProcessMgmtLeaveReq�ṩ����NLME-LEAVE.request��NLME-LEAVE.request�����豸�������������豸�Ƴ������һ���豸�Ƴ����������ȴ�5s����Ȼ��λ��һ���豸��λ�������������״̬����������ͼ����֮ǰ���硣��ע�������˼�ǲ��ᱣ��֮ǰ������Ϣ��������ڿɼ������磬�������������ź���ǿ�������У�������豸�Ƴ����豸��������association table�н����豸�Ƴ���The NWK address will only be reused in the case where a child device
-is a ZigBee End Device. In the case of a child ZigBee Router, the NWK address will not be reused.��һ�������豸���豸�뿪���磬�������豸��������ԭ�����硣
+		尽管“NLME-LEAVE.request” 提供多个参数。但ZigBee 2007 (as well as Texas
+		Instrument’s current implementation) 限制用户使用这些参数. 现在(“RemoveChildren”,  “Rejoin”,  and  “Silent”)  应该设置为缺省值。“ZDO_ProcessMgmtLeaveReq”. If these values are changed unexpected results may occur.
 
-���ܡ�NLME-LEAVE.request�� �ṩ�����������ZigBee 2007 (as well as Texas
-Instrument��s current implementation) �����û�ʹ����Щ����. ����(��RemoveChildren��,  ��Rejoin��,  and  ��Silent��)  Ӧ������Ϊȱʡֵ����ZDO_ProcessMgmtLeaveReq��. If these values are changed unexpected results may occur.
+	</p>
+		
+	<h3 class="h3_style1">9.5 Descriptors描述符</h3>
+	<p class="p_style1">所有ZigBee网络中得设备都有描述它类型和应用得描述符。这些信息可以被网络中其它设备发现。
+		配置在ZDConfig.c and ZDConfig.h。+
+		These 2 files also contain the
+		Node, Power Descriptors and default User Descriptor. Make sure to change these descriptors to define your device.</p>
+		
+	</div>
+
+<br />
+<HR align=center width=300 color=#987cb9 SIZE=1>
+<br />
+<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=2)" width="80%" color=#987cb9 SIZE=10>
+
+<br />
+<HR style="FILTER: alpha(opacity=0,finishopacity=100,style=1)" width="80%" color=#987cb9 SIZE=3>
+
+<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=1)" width="80%" color=#987cb9 SIZE=3>
+<HR style="border:1 dashed #987cb9" width="80%" color=#987cb9 SIZE=1>
+<br /><HR style="FILTER: progid:DXImageTransform.Microsoft.Glow(color=#987cb9,strength=10)" width="80%" color=#987cb9 SIZE=1><br />
+
+<div class="cycle_border">
+<h1 class="h1_blue">2.Zigbee</h1>
 
 
-9.5 Descriptors������
-����ZigBee�����е��豸�������������ͺ�Ӧ�õ�����������Щ��Ϣ���Ա������������豸���֡�
-������ZDConfig.c and ZDConfig.h��+
-These 2 files also contain the
-Node, Power Descriptors and default User Descriptor. Make sure to change these descriptors to define your device.
+<h3>Zigbee定义：</h3>
+
+<p class="style1">
+ZigBee是基于IEEE802.15.4标准的低功耗局域网协议。根据国际标准规定，
+ZigBee技术是一种短距离、低功耗的无线通信(2.4G)技术。
+简单的说，Zigbee是使用2.4G无线通信的一种协议。
+与其它<font class="font_style1">2.4G如蓝牙，WIFI</font>等信号上类似，协议上不同。
+</p>
+
+<h3>Zigbee协议：</h3>
+
+Zigbee网络是个多跳网络。跳转需要路由器支持。
+<h3>Zigbee设备类型：</h3>
+
+Zigbee网络中存在三种类型设备：1.协调器 2.路由器 3.终端
+协调器：
+建立网络，管理密钥。网络中的设备入网退网都由协调器管理。因此Zigbee网络中，协调器是必不可少的。
+路由器：
+功能：1.允许其它设备加入网络 2.多跳路由  3.协助子终端设备通信。
+终端：
+终端对网络不需要维护。
+
+Stack Profile
+所有在同一个网络的的设备必须有想通过的配置文件。
+
+
+
+
+
+
+10.Security
+10.2配置
+f8wConfig.cfg中设置SECURE = 1
+默认key可以在每个设备上预先设置或只在协调器上设置，并在连接网络时将其分发给每个设备。这个可以在ZGlobals.c的zgPreConfigKeys选项配置。如果配置为TRUE,那么每个设备key必须完全相同。如果设置为FALSE,那么只需要在协调器上设置。注意，后一种会发送给设备。这时存在隐患。因为存在监听。
+
+10.3Network access control
+信任中心（协调器）会用一些逻辑决定设备是否允许入网。其中一种是，信任中心只允许设备在某个时间段加入。第二种方案根据IEEE地址控制访问。这种方案可以通过修改ZDSecMgr.c的ZDSecMgrDeviceValidate()函数实现。
+
+10.4Key Updates
+</div>
+
+<img src="./img/zigbee信道选择.png" alt="" />
+<p>
+	<li>POWER_SAVING</li>
+	<li>-DRFD_RCVC_ALWAYS_ON=FALSE</li>
+	<li>-DPOLL_RATE=0,-DQUEUED_POLL_RATE=0,-DRESPONSE_POLL_RATE=0</li>
+	<li>wrmgr_attribute.pwrmgr_device = PWRMGR_BATTERY;</li>
+	<li>未使用的IO定义为内部上拉方式</li>
+	<li>按键处理使用中断方式</li>
+</p>
+
+<div class="cycle_border">
+<h2>Zstack Home Automation 1.2.2a aging使用 </h2>
+在Z-Stack Home 1.2.2里面，如果使能了zgChildAgingEnable功能。
+那么End Device在入网成功以后，会通过Device Announce把Timeout相关的信息发给父设备。ZDApp_AnnounceNewAddress( void )里的NLME_SendEndDevTimeoutReq。
+这个函数中会把下面两个变量的信息发送给父设备，也就是说不同的节点可以配置不同的timeout时间，主要也是根据节点的Data request来决定的。
+uint8 zgEndDeviceTimeoutValue = END_DEV_TIMEOUT_VALUE;
+uint8 zgEndDeviceConfiguration = END_DEV_CONFIGURATION;
+在父设备上面，收到这个req以后，会调用到下面这个函数
+NLME_ProcessEndDevTimeoutReq( NLDE_FrameFormat_t *ff )
+这个函数处理的过程，主要是把收到的zgEndDeviceTimeoutValue，写到AssociateList里面去，
+typedef struct
+{
+uint16 shortAddr; // Short address of associated device
+uint16 addrIdx; // Index from the address manager
+byte nodeRelation;
+byte devStatus; // bitmap of various status values
+byte assocCnt;
+byte age;
+linkInfo_t linkInfo;
+aging_end_device_t endDev;
+uint32 timeoutCounter;
+bool keepaliveRcv;
+} associated_devices_t;
+在父设备会定期的去更新这个表里面的，周期性调用AssocChildAging，更新的周期是1s钟，开了一个1s的timer事件，每隔1s就会把Associate List的设备的timecounter减1.
+同样只要在底层收到节点的Data request或者其他应用数据，立刻把这个变量恢复到初始值，也就刚开始的赋值，调用AssocChildTableUpdateTimeout。
+那么在定义更新的时候，如果timecounter减1等于0了，就会把节点的信息放入一个NotmyChild的list里面。
+// Not My Child structure
+typedef struct
+{
+uint16 shortAddr;
+uint16 timeoutCounter;
+} nwkNotMyChild_t;
+然后也是定期的去更新这个变量，如果这个时候收到data req，就会把节点信息从NotmyChildlist重新移到你Associate list里面去。
+如果在NotmyChildList里面的counter的时候，那么就把这个节点彻底删除了NwkNotMyChildSendLeave
+所以如果要判断节点是否在线，只需要判断在AssociateList还是否存在就可以了。
+AssocGetWithShort( uint16 shortAddr )
+
+
+Z-Stack Home 1.2.2a Child Aging
+说明：Child Aging 功能是指，节点连接到父节点后，会定期刷新某个值。这里指的是
+
+</div>
+
+
+节点状态可以在时间函数中查看。
+
+case ZDO_STATE_CHANGE:
+SampleApp_NwkState = (devStates_t)(MSGpkt->hdr.status);
+//这里判断设备入网处于哪种设备类型。
+	if ( (SampleApp_NwkState == DEV_ZB_COORD)
+		|| (SampleApp_NwkState == DEV_ROUTER)
+		|| (SampleApp_NwkState == DEV_END_DEVICE) )
+	{		
+					  	
+	}
+//只要不入网，设备肯定不在网络中
+	else
+	{
+						// Device is no longer in the network
+}
+					
+					break;
+					
+	<div class="cycle_border">
+	
+	<h3>zigbee入网</h3>
+	
+	为了防止非法的节点加入到我们的zigbee网络中，常用的做法是设置入网窗口，还有配对的方式。
+
+1. 配对的方式可以是按键的形式，或者直接入网。
+
+2. 设置入网窗口：
+
+协调器在启动后可以设置一个事件，事件到时间后就不允许设备入网，这个时间称为入网窗口，不允许设备入网有以下几点：
+
+一： 设备开机后处于不允许入网状态
+
+这可以设置一个变量，在NLMEDE.h 中的 NLME_PermitJoining，设置uint8 NLME_PermitJoining = FALSE; 即可
+
+二：本设备不允许其他设备入网，该函数不会发送数据包
+
+NLME_PermitJoiningRequest( byte PermitDuration );
+
+PermitDuration： 0x00 不允许入网
+
+PermitDuration： 0xFF 一直允许入网
+
+PermitDuration： 0x01 - 0xFE 允许多少秒内可以入网
+
+三：整个网络不允许设备入网，该函数会发送数据包
+
+ZDP_MgmtPermitJoinReq( zAddrType_t *dstAddr, byte duration, byte TcSignificance, byte SecurityEnable );
+
+可以由协调器指定广播地址进行广播，这个函数广播的命令即是PermitJoinReq命令，其他设备收到后会调用NLME_PermitJoiningRequest();
+
+TcSignificance - TRUE
+
+SecurityEnable  - FALSE
+	</div>
+
+
+</body>
+</html>
+
+
