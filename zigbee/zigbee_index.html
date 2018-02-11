@@ -10,7 +10,7 @@
 	<h1>Z-Stack 开发指南</h1>
 	<div class="div_menu">
 		<ul>
-		<li><a href="../index.html">Skey's Home</a></li>
+		<li><a href="../index.html">Z-Stack Develop's Guide</a></li>
 		<li><a href="">2</a></li>
 		<li><a href=""	>3</a></li>
 		<li><a href="">4</a></li>
@@ -96,32 +96,37 @@ ZigBee技术是一种短距离、低功耗的无线通信(2.4G)技术。
 
 Zigbee网络是个多跳网络。跳转需要路由器支持。
 <h3>Zigbee设备类型：</h3>
+<p>Zigbee网络中存在三种类型设备：1.协调器 2.路由器 3.终端</p>
 
-Zigbee网络中存在三种类型设备：1.协调器 2.路由器 3.终端
 协调器：
-建立网络，管理密钥。网络中的设备入网退网都由协调器管理。因此Zigbee网络中，协调器是必不可少的。
+[<p>建立网络，管理密钥。网络中的设备入网退网都由协调器管理。因此Zigbee网络中，协调器是必不可少的。</p>
+
 路由器：
-功能：1.允许其它设备加入网络 2.多跳路由  3.协助子终端设备通信。
+<p>功能：1.允许其它设备加入网络 2.多跳路由  3.协助子终端设备通信。</p>
+
 终端：
+<p>Stack Profile
+所有在同一个网络的的设备必须有想通过的配置文件。</p>
 终端对网络不需要维护。
 
-Stack Profile
-所有在同一个网络的的设备必须有想通过的配置文件。
 
 
 
 
 
+<h2>10.Security</h2>
 
-10.Security
-10.2配置
-f8wConfig.cfg中设置SECURE = 1
+<h3>10.2配置</h3>
+
+<p>f8wConfig.cfg中设置SECURE = 1
 默认key可以在每个设备上预先设置或只在协调器上设置，并在连接网络时将其分发给每个设备。这个可以在ZGlobals.c的zgPreConfigKeys选项配置。如果配置为TRUE,那么每个设备key必须完全相同。如果设置为FALSE,那么只需要在协调器上设置。注意，后一种会发送给设备。这时存在隐患。因为存在监听。
 
 10.3Network access control
 信任中心（协调器）会用一些逻辑决定设备是否允许入网。其中一种是，信任中心只允许设备在某个时间段加入。第二种方案根据IEEE地址控制访问。这种方案可以通过修改ZDSecMgr.c的ZDSecMgrDeviceValidate()函数实现。
+</p>
 
-10.4Key Updates
+<h2>10.4Key Updates</h2>
+
 </div>
 
 <img src="./img/zigbee信道选择.png" alt="" />
@@ -136,6 +141,8 @@ f8wConfig.cfg中设置SECURE = 1
 
 <div class="cycle_border">
 <h2>Zstack Home Automation 1.2.2a aging使用 </h2>
+
+<p>
 在Z-Stack Home 1.2.2里面，如果使能了zgChildAgingEnable功能。
 那么End Device在入网成功以后，会通过Device Announce把Timeout相关的信息发给父设备。ZDApp_AnnounceNewAddress( void )里的NLME_SendEndDevTimeoutReq。
 这个函数中会把下面两个变量的信息发送给父设备，也就是说不同的节点可以配置不同的timeout时间，主要也是根据节点的Data request来决定的。
@@ -174,6 +181,8 @@ AssocGetWithShort( uint16 shortAddr )
 
 Z-Stack Home 1.2.2a Child Aging
 说明：Child Aging 功能是指，节点连接到父节点后，会定期刷新某个值。这里指的是
+</p>
+
 
 </div>
 
